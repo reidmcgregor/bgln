@@ -23,7 +23,15 @@ class GamesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should be logged in to add a game to a collection" do
+    post :create, game: { name: "Machi Koro" }
+    assert_response :redirect
+    assert_redirected_to new_user_session_path
+  end
+
   test "should create game" do
+    sign_in users(:reid)
+
     assert_difference('Game.count') do
       post :create, game: { name: @game.name }
     end
@@ -36,12 +44,20 @@ class GamesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get edit" do
+  test "should get edit when logged in" do
+    sign_in users(:reid)
     get :edit, id: @game
     assert_response :success
   end
 
-  test "should update game" do
+  test "should redirect game update when not logged in" do
+    patch :update, id: @game, game: { name: @game.name }
+    assert_response :redirect
+    assert_redirected_to new_user_session_path
+  end
+
+  test "should update game when logged in" do
+    sign_in users(:reid)
     patch :update, id: @game, game: { name: @game.name }
     assert_redirected_to game_path(assigns(:game))
   end

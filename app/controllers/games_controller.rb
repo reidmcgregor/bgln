@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_filter :authenticate_user!, only: [:new]
+  before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
   before_action :set_game, only: [:show, :edit, :update, :destroy]
 
   # GET /games
