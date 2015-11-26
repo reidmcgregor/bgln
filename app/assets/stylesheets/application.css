@@ -21,3 +21,11 @@ body {
 .navbar {
 	margin-bottom: 40px;
 }
+
+.form-group {
+	clear: both;
+}
+
+.alert {
+	margin-top: 20px;
+}

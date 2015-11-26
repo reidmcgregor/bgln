@@ -5,11 +5,10 @@
 </div>
 
 <%= link_to "Add a game", new_game_path, class: "btn btn-success" %>
-<%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
 
 <% @games.each do |game| %>
 <div class="game">
-  <strong><%= game.name %></strong> | <%= game.owner %>
+  <strong><%= game.user.full_name %></strong> | <%= game.name %>
   <div class="meta">
     <%= link_to time_ago_in_words(game.created_at) + " ago", game %>
     <span class="admin">

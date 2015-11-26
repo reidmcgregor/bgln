@@ -2,8 +2,8 @@
 
 one:
   name: MyString
-  owner: MyString
+  user: reid
 
 two:
   name: MyString
-  owner: MyString
+  user: reid

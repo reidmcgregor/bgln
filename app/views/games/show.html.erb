@@ -1,11 +1,11 @@
 <p>
-  <strong>Name:</strong>
-  <%= @game.name %>
+  <strong>User</strong>
+  <%= @game.user.full_name %>
 </p>
 
 <p>
-  <strong>Owner:</strong>
-  <%= @game.owner %>
+  <strong>Name</strong>
+  <%= @game.name %>
 </p>
 
 <%= link_to 'Edit', edit_game_path(@game) %> |

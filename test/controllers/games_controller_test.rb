@@ -11,14 +11,21 @@ class GamesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:games)
   end
 
-  test "should get new" do
+  test "should be redirected when not logged in" do
+    get :new
+    assert_response :redirect
+    assert_redirected_to new_user_session_path
+  end
+
+  test "should render the new page when logged in" do
+    sign_in users(:reid)
     get :new
     assert_response :success
   end
 
   test "should create game" do
     assert_difference('Game.count') do
-      post :create, game: { name: @game.name, owner: @game.owner }
+      post :create, game: { name: @game.name }
     end
 
     assert_redirected_to game_path(assigns(:game))
@@ -35,7 +42,7 @@ class GamesControllerTest < ActionController::TestCase
   end
 
   test "should update game" do
-    patch :update, id: @game, game: { name: @game.name, owner: @game.owner }
+    patch :update, id: @game, game: { name: @game.name }
     assert_redirected_to game_path(assigns(:game))
   end
 
