@@ -7,3 +7,7 @@ one:
 two:
   name: MyString
   user: reid
+
+three:
+  name: "Fury of Dracula"
+  user: nate

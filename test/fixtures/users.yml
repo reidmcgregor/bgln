@@ -3,3 +3,9 @@ reid:
   last_name: "McGregor"
   profile_name: "reidmcgregor"
   email: "reid.mcgregor@gmail.com"
+
+nate:
+  first_name: "Nate"
+  last_name: "Prosser"
+  profile_name: "nrprosser"
+  email: "n.r.prosser@gmail.com"
