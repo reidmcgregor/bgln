@@ -9,3 +9,9 @@ nate:
   last_name: "Prosser"
   profile_name: "nrprosser"
   email: "n.r.prosser@gmail.com"
+
+evan:
+  first_name: "Evan"
+  last_name: "Duxbury"
+  profile_name: "edux"
+  email: "evanduxbury@gmail.com"

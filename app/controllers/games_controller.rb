@@ -25,7 +25,7 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.json
   def create
-    @game = Game.new(game_params)
+    @game = current_user.games.new(game_params)
 
     respond_to do |format|
       if @game.save
@@ -41,6 +41,10 @@ class GamesController < ApplicationController
   # PATCH/PUT /games/1
   # PATCH/PUT /games/1.json
   def update
+    @game = current_user.games.find(params[:id])
+    if params[:game].has_key?(:user_id)
+      params[:game].delete(:user_id)
+    end
     respond_to do |format|
       if @game.update(game_params)
         format.html { redirect_to @game, notice: 'Game was successfully updated.' }

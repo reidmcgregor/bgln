@@ -29,7 +29,7 @@ class GamesControllerTest < ActionController::TestCase
     assert_redirected_to new_user_session_path
   end
 
-  test "should create game" do
+  test "should create game when logged in" do
     sign_in users(:reid)
 
     assert_difference('Game.count') do
@@ -37,6 +37,17 @@ class GamesControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to game_path(assigns(:game))
+  end
+
+  test "should create game for current user when logged in" do
+    sign_in users(:reid)
+
+    assert_difference('Game.count') do
+      post :create, game: { name: @game.name, user_id: users(:nate).id }
+    end
+
+    assert_redirected_to game_path(assigns(:game))
+    assert_equal assigns(:game).user_id, users(:reid).id
   end
 
   test "should show game" do
@@ -60,6 +71,13 @@ class GamesControllerTest < ActionController::TestCase
     sign_in users(:reid)
     patch :update, id: @game, game: { name: @game.name }
     assert_redirected_to game_path(assigns(:game))
+  end
+
+  test "should update game for current user when logged in" do
+    sign_in users(:reid)
+    patch :update, id: @game, game: { name: @game.name, user_id: users(:nate).id }
+    assert_redirected_to game_path(assigns(:game))
+    assert_equal assigns(:game).user_id, users(:reid).id
   end
 
   test "should destroy game" do
